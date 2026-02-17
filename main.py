@@ -30,8 +30,11 @@ async def webhook_head():
 async def verify_webhook(request: Request):
     params = request.query_params
     print("\n PRÓBA WERYFIKACJI WEBHOOKA:")
+    print(f"   WSZYSTKIE PARAMETRY: {dict(params)}")
     print(f"   Token z zapytania: '{params.get('hub.verify_token')}'")
     print(f"   Oczekiwany token: '{VERIFY_TOKEN}'")
+    print(f"   hub.mode: '{params.get('hub.mode')}'")
+    print(f"   hub.challenge: '{params.get('hub.challenge')}'")
     print(f"   Czy się zgadzają: {params.get('hub.verify_token') == VERIFY_TOKEN}")
     
     if params.get("hub.verify_token") == VERIFY_TOKEN:
